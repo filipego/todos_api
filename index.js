@@ -1,19 +1,19 @@
 var express = require('express'),
       app = express(),
-      port = process.env.PORT || 3000;
+      port = process.env.PORT || 3000,
+      todoRoutes = require('./routes/todos');
 
 app.get('/', function (req, res) {
-  res.json({ message: "some data"})
-})
+  res.send("hello")
+});
 
-app.get('/happy', function (req, res) {
-  res.send(';)')
-})
+app.use('/api/todos', todoRoutes);
 
 app.get('/*', function (req, res) {
-  res.send('Not found')
-})
+  res.send("404")
+});
+
 
 app.listen(port, function () {
   console.log('Example app listening on port ' + port)
-})
+});
